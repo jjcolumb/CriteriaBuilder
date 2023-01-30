@@ -1,0 +1,19 @@
+﻿<BlazorCriteriaBuilder 
+    Value="@ComponentModel.Value" 
+    TargetType="ComponentModel.ObjectType" 
+    CriteriaRuleModified="OnCriteriaRuleModified" 
+/>
+
+
+@code {
+    [Parameter]
+    public BlazorCriteriaModel ComponentModel { get; set; }
+
+    private void OnCriteriaRuleModified(string value)
+    {
+        ComponentModel.SetValueFromUI(value);
+    }
+
+    public static RenderFragment Create(BlazorCriteriaModel componentModel) =>
+    @<BlazorCriteriaRenderer ComponentModel=@componentModel />;
+}
